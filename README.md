@@ -16,7 +16,7 @@ Projeto WEB API,  ASP NET MVC (C#), MySQL, HTML5, CSS3, Bootstrap
     - Feche a janela de importação quando terminar.
       
 # Back-End
-  - WEB API .NET Documenta do Sweguer
+  - WEB API .NET Documenta no Sweguer
     - Api de Produtos
     - Api de Categorias
 Modelagem DDD
