@@ -1,0 +1,94 @@
+﻿@model CitelSoftware.Models.ProdutoViewModel
+
+@{
+    ViewData["Title"] = "Deletar";
+}
+
+<div class="container mt-4">
+    <h1>Deletar</h1>
+
+    <h3>Tem certeza de que deseja excluir este Item?</h3>
+
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CodBarras)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CodBarras)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Referencia)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Referencia)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Imagem)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Imagem)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ValorVenda)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ValorVenda)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ValorCusto)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ValorCusto)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Estoque)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Estoque)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Observacao)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Observacao)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DataCadastro)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Ativo)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Ativo)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CategoriaId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CategoriaId)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" method="post">
+            <input type="submit" value="Excluir" class="btn btn-danger" /> |
+            <a asp-action="Index">Voltar para a Lista</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CitelSoftware.Models.ProdutoViewModel>
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h3>@ViewData["Title"]</h3>
+        </div>
+    </div>
+
+    <form asp-action="Index" method="get" class="card" style="margin-bottom: 20px; padding: 10px;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="SearchString" class="form-label">Parâmetros da pesquisa:</label>
+                    <input type="text" class="form-control" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex justify-content-end align-items-end ">
+                    <input type="submit" value="Pesquisar" class="btn btn-primary" />
+                    <a class="btn btn-primary ml-2" asp-action="Index">Listar todos</a>
+                    <a class="btn btn-primary ml-2" asp-action="Create">Novo</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Código de Barras</th>
+                <th>Referência</th>
+                <th>Valor R$</th>
+                <th>Custo R$</th>
+                <th>Estoque</th>
+                <th>Observação</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Descricao</td>
+                    <td>@item.CodBarras</td>
+                    <td>@item.Referencia</td>
+                    <td>R$ @item.ValorVenda</td>
+                    <td>R$ @item.ValorCusto</td>
+                    <td>@item.Estoque</td>
+                    <td>@item.Observacao</td>
+                    <td>@item.CategoriaId</td>
+                    <td class="text-center">
+                        <a asp-action="Edit" class="btn btn-primary bi bi-pencil-square btn-sm" asp-route-id="@item.Id"></a>
+                        <a asp-action="Delete" class="btn btn-danger bi bi-trash3 btn-sm" asp-route-id="@item.Id"></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
