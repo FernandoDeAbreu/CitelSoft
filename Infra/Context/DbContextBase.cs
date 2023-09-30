@@ -13,6 +13,14 @@ namespace Infra.Context
         public DbSet<Categoria>? Categoria { set; get; }
         public DbSet<Produto>? Produto { set; get; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Produto>()
+                .HasOne(p => p.Categoria)
+                .WithMany(c => c.Produtos)
+                .HasForeignKey(p => p.CategoriaId);
+        }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

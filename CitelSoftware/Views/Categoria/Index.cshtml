@@ -11,21 +11,15 @@
         </div>
     </div>
 
-    <form asp-action="Index" method="get" class="card" style="margin-bottom: 20px; padding: 10px;">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="SearchString" class="form-label">Parâmetros da pesquisa:</label>
-                    <input type="text" class="form-control" name="SearchString" value="@ViewData["CurrentFilter"]" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="d-flex justify-content-end align-items-end ">
-                    <input type="submit" value="Pesquisar" class="btn btn-primary" />
-                    <a class="btn btn-primary ml-2" asp-action="Index">Listar todos</a>
-                    <a class="btn btn-primary ml-2" asp-action="Create">Novo</a>
-                </div>
-            </div>
+    <form asp-action="Index" method="get" class="card" style="margin-bottom: 20px; padding-left: 5px; padding-right: 5px">
+        <div class="mb-3 mt-3 no-color ">
+            <label for="text" class="form-label">Paramentros da pesquisa:</label>
+            <input type="text" class="form-control" name="SearchString" value="@ViewData["CurrentFilter"]" />
+        </div>
+        <div class="col-md-12 d-flex justify-content-end" style="margin-bottom: 20px">
+            <input type="submit" value="Pesquisar" class="btn btn-primary justify-end" />
+            <a class="btn btn-primary justify-end" style="margin-left: 5px; margin-right: 5px" asp-action="Index">Listar todos</a>
+            <a class="btn btn-primary justify-end" asp-action="Create">Novo</a>
         </div>
     </form>
     <table class="table table-striped">

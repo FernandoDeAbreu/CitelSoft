@@ -1,5 +1,6 @@
 ﻿using CitelSoftware.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -50,6 +51,17 @@ namespace CitelSoftware.Controllers
 
         public IActionResult Create()
         {
+            List<CategoriaViewModel> categoriaList = new List<CategoriaViewModel>();
+            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/categoria/GetAll").Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                categoriaList = JsonConvert.DeserializeObject<List<CategoriaViewModel>>(data);
+            }
+
+            ViewBag.Categorias = new SelectList(categoriaList, "Id", "Descricao");
+
             return View();
         }
 
@@ -67,6 +79,7 @@ namespace CitelSoftware.Controllers
                     TempData["sucessMessage"] = "Produto criado com sucesso";
                     return RedirectToAction("Index");
                 }
+            
             }
             catch (Exception ex)
             {
@@ -90,14 +103,31 @@ namespace CitelSoftware.Controllers
                 {
                     string data = response.Content.ReadAsStringAsync().Result;
                     produto = JsonConvert.DeserializeObject<ProdutoViewModel>(data);
+
+                    HttpResponseMessage responseCategorias = _client.GetAsync(_client.BaseAddress + "/categoria/GetAll").Result;
+
+                    if (responseCategorias.IsSuccessStatusCode)
+                    {
+                        string categoriasData = responseCategorias.Content.ReadAsStringAsync().Result;
+                        List<CategoriaViewModel> categorias = JsonConvert.DeserializeObject<List<CategoriaViewModel>>(categoriasData);
+
+                        ViewBag.Categorias = new SelectList(categorias, "Id", "Descricao");
+
+                        return View(produto);
+                    }
                 }
-                return View(produto);
+                else
+                {
+                    TempData["errorMessage"] = "Produto não encontrado";
+                    return RedirectToAction("Index");
+                }
             }
             catch (Exception ex)
             {
                 TempData["errorMessage"] = ex.Message;
-                return View();
             }
+            return View();
+
         }
 
         [HttpPost]
